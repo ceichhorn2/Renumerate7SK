@@ -1,0 +1,13 @@
+with open("rn7sk.extracted.iclip2.plus.bedgraph") as inp:
+  values = list((line.strip().split('\t') for line in inp))
+
+output = []
+for i in range(len(values)):
+  num = values[i][1]
+  if int(num) >= 52995615 and int(num) <= 52995951:
+      values[i].insert(0, str(int(num) - 52995614))
+      line = values[i]
+      output.append(line)
+
+with open('rn7sk.extracted.gene.numbered.iclip2.plus.bedgraph', 'w') as file:
+  file.writelines('\t'.join(i) + '\n' for i in output)
